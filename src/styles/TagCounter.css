@@ -1,0 +1,43 @@
+/* src/styles/TagCounter.css */
+
+.tag-counter {
+    padding: 20px;
+  }
+
+  .input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  input[type='text'] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .tag-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .tag-table th,
+  .tag-table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .tag-table th {
+    background-color: #f2f2f2;
+  }
