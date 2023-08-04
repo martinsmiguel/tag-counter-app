@@ -1,17 +1,23 @@
-// src/components/TagCounter.tsx
-
-import React, { useState } from 'react';
-import '../styles/TagCounter.css'
-import axios from 'axios';
+import React, { useState } from "react";
+import "../styles/TagCounter.css";
+import axios, { AxiosError } from "axios";
 
 interface TagInfo {
   tag: string;
   quantidade: number;
 }
 
+interface PageInfo {
+  url: string;
+  tags: { [tag: string]: number };
+}
+
 const TagCounter: React.FC = () => {
-  const [url, setUrl] = useState<string>('');
-  const [tagInfoList, setTagInfoList] = useState<TagInfo[]>([]);
+  const [url, setUrl] = useState<string>("");
+  const [pageInfoList, setPageInfoList] = useState<PageInfo[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
 
   const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(event.target.value);
@@ -21,36 +27,46 @@ const TagCounter: React.FC = () => {
     event.preventDefault();
 
     if (!url) {
-      alert('Digite uma URL válida.');
+      alert("Digite uma URL válida.");
       return;
     }
-    console.log(url)
+
+    setLoading(true);
+    setError(null);
+
     try {
-      const {data} = await axios.get(`http://localhost:8000/fetch-url`, {
-        params: {url}
+      const { data } = await axios.get(`http://localhost:8000/fetch-urls`, {
+        params: { urls: url },
       });
-      setTagInfoList(data);
-      console.log(data);
-      const object = Object.entries(data)
-      console.log(object)
-      const tagsFiltered = object.map(tag => {
-        return {
-            tag: tag[0],
-            quantidade: tag[1]
-        }
-      }) as TagInfo[]
-      setTagInfoList(tagsFiltered)
+      setLoading(false);
+
+      if (Array.isArray(data)) {
+        setPageInfoList(data);
+      } else {
+        setError("Resposta inválida do servidor.");
+      }
     } catch (error) {
-      console.error('Error fetching URL:', error);
-      console.log(`url: ${url}`);
-      alert('Erro ao obter as tags da URL. Verifique a URL informada.');
-      setTagInfoList([]);
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          console.error("Error fetching URL:", error.response.data);
+          setError("Erro ao obter as tags da URL. " + error.response.data.message);
+        } else {
+          console.error("Error fetching URL:", error.message);
+          setError("Erro desconhecido ao obter as tags da URL.");
+        }
+      } else {
+        console.error("Error fetching URL:", error);
+        setError("Erro desconhecido ao obter as tags da URL.");
+      }
+      setPageInfoList([]);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="tag-counter">
-      <form >
+      <form onSubmit={fetchTagInfo}>
         <div className="input-container">
           <input
             type="text"
@@ -58,31 +74,42 @@ const TagCounter: React.FC = () => {
             onChange={handleUrlChange}
             placeholder="Digite a URL"
           />
-          <button onClick={fetchTagInfo} type="submit">Contar Tags</button>
+          <button type="submit">Contar Tags</button>
         </div>
       </form>
 
-    <p
-    >
-        Site consultado: {url}
-    </p>
-      {tagInfoList.length > 0 && (
-        <table className="tag-table">
-          <thead>
-            <tr>
-              <th>Tag</th>
-              <th>Quantidade</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tagInfoList.map(({ tag, quantidade }) => (
-              <tr key={tag}>
-                <td>{tag}</td>
-                <td>{quantidade}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {loading && <p>Carregando...</p>}
+
+      {error && <p className="error-message">{error}</p>}
+
+      {pageInfoList.length > 0 && (
+        <div className="table-list-container">
+          {pageInfoList.map((pageInfo) => (
+            <div key={pageInfo.url} className="page-info-container">
+              <div className="table-container">
+                <table className="tag-table">
+                  <thead>
+                    <tr>
+                      <th>Tag</th>
+                      <th>Quantidade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(pageInfo.tags).map(([tag, quantidade]) => (
+                      <tr key={tag}>
+                        <td>{tag}</td>
+                        <td>{quantidade}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <td colSpan={2}><p className="url">{pageInfo.url}</p></td>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

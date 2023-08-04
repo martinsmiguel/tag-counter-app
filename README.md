@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# Tag Counter - Desafio de Contagem de Tags HTML
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um projeto React.js com TypeScript desenvolvido para resolver o desafio de contagem de tags HTML em páginas da web. O objetivo é criar um programa que identifique as tags HTML presentes em páginas carregadas a partir de URLs fornecidas, contabilizando a quantidade de cada tag em cada página e armazenando as informações em um banco de dados. A seguir, você encontrará informações sobre a estrutura do projeto, instruções de instalação, uso e tecnologias utilizadas.
 
-## Available Scripts
+## Estrutura do Projeto
 
-In the project directory, you can run:
 
-### `yarn start`
+```bash
+/src
+  /components
+    TagCounter.tsx
+  /styles
+    App.css
+    index.css
+    TagCounter.css
+  App.tsx
+  index.tsx
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Componentes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### `TagCounter.tsx`
 
-### `yarn test`
+Este é o componente principal do desafio. Ele apresenta um formulário onde você pode inserir a URL de uma página da web e obter a contagem de tags HTML presentes nessa página. Os resultados são exibidos em uma tabela com as tags encontradas e suas respectivas quantidades.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Estilos
 
-### `yarn build`
+Os arquivos CSS nesta pasta (`App.css`, `index.css`, `TagCounter.css`) são responsáveis pela estilização do projeto.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instruções de Instalação
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Certifique-se de ter o Node.js e o npm (ou yarn) instalados em sua máquina.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Faça o clone deste repositório em uma pasta local:
 
-### `yarn eject`
+```bash
+git clone https://github.com/martinsmiguel/tag-counter-app.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Navegue até a pasta do projeto:
+```bash
+cd tag-counter
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Instale as dependências necessárias:
+```bash
+npm install
+```
+ou
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+yarn install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Instruções de Uso
 
-## Learn More
+Execute o projeto localmente com o seguinte comando:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
+ou
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn start
+```
+- Abra seu navegador e acesse a URL http://localhost:3000 para visualizar o aplicativo.
+
+- No formulário apresentado, digite a URL de uma página da web que deseja analisar e clique no botão "Contar Tags".
+
+- Aguarde o processamento e os resultados serão exibidos em uma tabela, mostrando as tags HTML encontradas na página e suas quantidades.
+
+## Tecnologias Utilizadas
+
+- React.js: Biblioteca JavaScript para a construção de interfaces de usuário.
+- TypeScript: Superset do JavaScript que adiciona tipagem estática ao código.
+- Axios: Cliente HTTP para fazer solicitações a APIs e páginas da web.
+- CSS: Linguagem de estilo utilizada para a formatação do layout.

@@ -1,43 +1,77 @@
-/* src/styles/TagCounter.css */
-
 .tag-counter {
-    padding: 20px;
-  }
+  padding: 20px;
+}
 
-  .input-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  input[type='text'] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-  button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+button {
+  background-color: #303134;
+  border: 1px solid #303134;
+  border-radius: 4px;
+  color: #e8eaed;
+  font-size: 14px;
+  margin: 11px 4px;
+  padding: 0 16px;
+  line-height: 27px;
+  height: 36px;
+  min-width: 54px;
+  text-align: center;
+}
 
-  .tag-table {
-    margin-top: 20px;
-    border-collapse: collapse;
-    width: 100%;
-  }
+.table-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
-  .tag-table th,
-  .tag-table td {
-    padding: 8px;
-    border: 1px solid #ccc;
-  }
+.tag-table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-  .tag-table th {
-    background-color: #f2f2f2;
-  }
+.tag-table th,
+.tag-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.tag-table th:first-child,
+.tag-table td:first-child {
+  width: 150px;
+}
+
+.tag-table th:nth-child(2),
+.tag-table td:nth-child(2) {
+  width: 100px;
+}
+
+.tag-table th {
+  background-color: #f2f2f2;
+}
+
+.tag-table tfoot td {
+  background-color: #303134;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.url {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  max-width: 500px;
+}

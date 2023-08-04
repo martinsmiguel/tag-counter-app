@@ -1,5 +1,3 @@
-// src/App.tsx
-
 import React from 'react';
 import './styles/App.css';
 import TagCounter from './components/TagCounter';
