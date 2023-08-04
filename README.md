@@ -1,4 +1,4 @@
-# Tag Counter - Desafio de Contagem de Tags HTML
+# Tag Counter App - Desafio de Contagem de Tags HTML
 
 Este é um projeto React.js com TypeScript desenvolvido para resolver o desafio de contagem de tags HTML em páginas da web. O objetivo é criar um programa que identifique as tags HTML presentes em páginas carregadas a partir de URLs fornecidas, contabilizando a quantidade de cada tag em cada página e armazenando as informações em um banco de dados. A seguir, você encontrará informações sobre a estrutura do projeto, instruções de instalação, uso e tecnologias utilizadas.
 
@@ -39,7 +39,7 @@ git clone https://github.com/martinsmiguel/tag-counter-app.git
 
 3. Navegue até a pasta do projeto:
 ```bash
-cd tag-counter
+cd tag-counter-app
 ```
 
 4. Instale as dependências necessárias:
